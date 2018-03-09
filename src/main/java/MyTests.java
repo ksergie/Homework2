@@ -3,8 +3,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-import java.io.File;
-import java.net.URLDecoder;
 
 public class MyTests {
     public static void main(String[] args) {
