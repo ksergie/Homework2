@@ -1,27 +1,21 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.events.WebDriverEventListener;
+import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 
-
-public class EventHandler implements WebDriverEventListener {
-
+public class EventHandler extends AbstractWebDriverEventListener {
     @Override
     public void beforeNavigateTo(String url, WebDriver driver) {
-
+        System.out.println("We will open the " + url + " page.");
     }
+
     @Override
     public void afterNavigateTo(String url, WebDriver driver) {
-
+        System.out.println("We opened the " + url + " page.");
     }
 
     @Override
     public void beforeNavigateBack(WebDriver driver) {
-
-    }
-
-    @Override
-    public void afterNavigateBack(WebDriver driver) {
 
     }
 
@@ -42,17 +36,17 @@ public class EventHandler implements WebDriverEventListener {
 
     @Override
     public void beforeFindBy(By by, WebElement element, WebDriver driver) {
-        System.out.println(("Should be " + by));
+        System.out.println("Should be " + by);
     }
 
     @Override
     public void afterFindBy(By by, WebElement element, WebDriver driver) {
-        System.out.println(("Element found"));
+        System.out.println("Element found");
     }
 
     @Override
     public void beforeClickOn(WebElement element, WebDriver driver) {
-        System.out.println(("Should click " + element.getTagName());
+        System.out.println("Should click " + element.getTagName());
     }
 
     @Override
@@ -60,15 +54,6 @@ public class EventHandler implements WebDriverEventListener {
         System.out.println("Clicked successfull");
     }
 
-    @Override
-    public void beforeChangeValueOf(WebElement element, WebDriver driver) {
-
-    }
-
-    @Override
-    public void afterChangeValueOf(WebElement element, WebDriver driver) {
-
-    }
 
     @Override
     public void beforeScript(String script, WebDriver driver) {

@@ -1,11 +1,14 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import java.io.File;
+import java.net.URLDecoder;
 
 public class MyTests {
     public static void main(String[] args) {
+
         WebDriver driver = initChromeDriver();
 
         LoginPage loginPage = new LoginPage(driver);
@@ -21,7 +24,6 @@ public class MyTests {
         dashboardPage.moveToCatalog();
         dashboardPage.clickCategoryLink();
         dashboardPage.createNewCategory();
-        // check result
         if (dashboardPage.getAddCategoryResult().contains("Создано")){
             System.out.println("New Category creates success!");
         } else {
@@ -34,11 +36,12 @@ public class MyTests {
         driver.quit();
     }
 
+
     public static WebDriver initChromeDriver(){
-        System.setProperty("webdriver.chrome.driver",
-                new File(MyTests.class.getResource("/chromedriver.exe").getFile()).getPath());
+        System.setProperty("webdriver.chrome.driver", MyTests.class.getResource("chromedriver.exe").getFile());
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
-        return new ChromeDriver(options);
+        EventFiringWebDriver driver = new EventFiringWebDriver(new ChromeDriver(options));
+        return driver.register(new EventHandler());
     }
 }

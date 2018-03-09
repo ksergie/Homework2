@@ -1,12 +1,15 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class DashboardPage {
+
     private WebDriver driver;
 
     public DashboardPage(WebDriver driver) {
@@ -31,8 +34,8 @@ public class DashboardPage {
     }
 
     public DashboardPage moveToCatalog(){
-        WebDriverWait wait = (new WebDriverWait(driver, 5));
         Actions actions = new Actions(driver);
+        WebDriverWait wait = (new WebDriverWait(driver, 5));
         wait.until(visibilityOfElementLocated(catalogLink));
         WebElement catalog = driver.findElement(catalogLink);
         actions.moveToElement(catalog).build().perform();
@@ -57,8 +60,8 @@ public class DashboardPage {
     }
 
     public DashboardPage clickSortCategories(){
-        driver.findElement(sortUpIcon).click();
         WebDriverWait wait = (new WebDriverWait(driver, 5));
+        driver.findElement(sortUpIcon).click();
         wait.until(visibilityOfElementLocated(myCategory));
         return this;
     }
